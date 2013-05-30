@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz-db>
+
+    <user username="keith" password="password" />
+    <user username="sifang" password="password" />
+    <user username="rajesh" password="password" />
+
+    <subject name="Math">
+        <category name="Addition">
+            <module name="Single Digit Addition">
+
+                <question type="multiple-choice">
+                    <text>6 + 5</text>
+                    <answer>12</answer>
+                    <answer>12</answer>
+                    <answer correct="true">11</answer>
+                    <answer>17</answer>
+                    <answer>9</answer>
+                </question>
+
+                <question type="true-false">
+                    <text>6 + 7 = 17</text>
+                    <answer>false</answer>
+                </question>
+
+                <question type="fill-in-the-blank">
+                    <text>What is 6 more than 9?</text>
+                    <type>fill-in-the-blank</type>
+                    <answer>15</answer>
+                </question>
+
+            </module>
+        </category>
+
+        <category name="Subtraction">
+            <module name="Single Digit Subtraction">
+
+                <question type="multiple-choice">
+                    <text>6 - 5</text>
+                    <type>multiple-choice</type>
+                    <answer>12</answer>
+                    <answer>12</answer>
+                    <answer correct="true">1</answer>
+                    <answer>17</answer>
+                    <answer>9</answer>
+                </question>
+
+                <question type="true-false">
+                    <text>9 - 7 = 2</text>
+                    <answer>true</answer>
+                </question>
+
+            </module>
+        </category>
+    </subject>
+
+</quiz-db>
+
