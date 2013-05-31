@@ -12,8 +12,14 @@
 			<include name="servlet*.jar"/>        
 		</fileset>        
 		<pathelement path="${build.dir}"/>    
-	</path>    
-  
+	</path>
+	
+    <path id="mysqlclasspath">
+        <fileset dir="ExternalLib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
 	<target name="build" description="Compile main source tree java files">        
 		<mkdir dir="${build.dir}"/>        
 		<javac destdir="${build.dir}" target="1.5" debug="true"               
@@ -71,6 +77,18 @@
         </delete>
     </target>
         
+    <target name="build-database" description="(re)build MySQL database">
+        <echo message="building empty database" />		
+        <sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" password="${sql.pass}" classpathref="mysqlclasspath">
+            <transaction src="db/create_database.sql" />
+        </sql>
+        <echo message="populating database" />
+        <java fork="true" classname="com.webquiz.XmlToDb" classpath="${web.dir}/WEB-INF/classes/" classpathref="mysqlclasspath">
+            <arg value="db/database.xml" />
+        </java>
+        <echo message="done building database" />
+    </target>
+
 	<target name="usage">        
 		<echo message=""/>        
 		<echo message="${name} build file"/>        
@@ -82,6 +100,7 @@
 		<echo message="deploy    --> Deploy application as directory"/>        
 		<echo message="deploywar --> Deploy application as a WAR file"/>
 		<echo message="undeploy -->  Un-Deploy application"/>
+		<echo message="build-database --> (re)build MySQL database" />
 		<echo message=""/>    
 	</target>    
 
