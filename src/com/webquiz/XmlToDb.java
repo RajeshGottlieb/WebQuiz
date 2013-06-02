@@ -168,7 +168,9 @@ public class XmlToDb {
                     text = getText(child);
                 }
                 if (child.getNodeName() == "answer") {
-                    Answer ans = new Answer(getAttribute(child, "correct", null), getText(child));
+                    // true-false and fill-in-the-blank questions only have one answer which is always correct
+                    String correct = (type.equals("true-false") || type.equals("fill-in-the-blank")) ? "true" : "false";
+                    Answer ans = new Answer(getAttribute(child, "correct", correct), getText(child));
                     answers.add(ans);
                 }
             }
@@ -183,16 +185,10 @@ public class XmlToDb {
             int question_id = rs.getInt(1);
 
             for (Answer answer : answers) {
-                if (answer.correct != null) {
+                int correct = answer.correct.equals("true") ? 1 : 0;
 
-                    int correct = answer.correct.equals("true") ? 1 : 0;
-                    rc = stmt.executeUpdate("INSERT INTO answer (question_id, correct, value) VALUES (" + question_id
-                            + ", " + correct + ", '" + answer.value + "')", Statement.RETURN_GENERATED_KEYS);
-                } else {
-
-                    rc = stmt.executeUpdate("INSERT INTO answer (question_id, value) VALUES (" + question_id + ", '"
-                            + answer.value + "')");
-                }
+                rc = stmt.executeUpdate("INSERT INTO answer (question_id, correct, value) VALUES (" + question_id
+                        + ", " + correct + ", '" + answer.value + "')", Statement.RETURN_GENERATED_KEYS);
                 System.out.println("Inserted: answer row OK using Statement.  " + rc + " row(s)");
             }
         }
