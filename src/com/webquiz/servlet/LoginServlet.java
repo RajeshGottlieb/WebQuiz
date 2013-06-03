@@ -1,4 +1,4 @@
-package com.webquiz;
+package com.webquiz.servlet;
 
 import java.io.IOException;
 
