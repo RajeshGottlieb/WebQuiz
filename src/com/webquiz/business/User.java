@@ -11,6 +11,11 @@ public class User implements Serializable {
     private String password = "";
     private int id = -1;
 
+    public User(String username, String password) {
+    	setUsername(username);
+    	setPassword(password);
+    }
+    
     public String getUsername() {
         return username;
     }

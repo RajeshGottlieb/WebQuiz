@@ -21,6 +21,16 @@
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SelectTest</servlet-name>
+        <servlet-class>com.webquiz.servlet.SelectTestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SelectTest</servlet-name>
+        <url-pattern>/SelectTest</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>login.html</welcome-file>
         <welcome-file>index.html</welcome-file>

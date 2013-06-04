@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 import com.webquiz.business.User;
 import com.webquiz.data.UserDB;
 
-public class LoginServlet extends HttpServlet {
+public class SelectTestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,18 +17,16 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        User user = new User(username, password);
+
+        HttpSession httpSession = req.getSession();
+        User user = (User) httpSession.getAttribute("user");
+
         String url = "";
 
-        if (UserDB.validate(user)) {
-            // req.setAttribute("user", user);
-            HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("user", user);
-            url = "/SelectTest";
+        if (user != null) {
+            // TODO need to implement a QuizSelection object for use in selecttest.jsp
+            url = "/selecttest.jsp";
         } else {
-            req.setAttribute("error", "Sorry. Try again.");
             url = "/login.jsp";
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

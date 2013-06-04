@@ -8,7 +8,7 @@
 	    String error = (String) request.getAttribute("error");
 	    if (error != null) {
 	%>
-	<font color="red"><%=error%></font>
+	<em><font color="red"><%=error%></font></em>
 	<%
 	    }
 	%>
