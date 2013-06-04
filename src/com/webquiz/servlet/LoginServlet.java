@@ -2,79 +2,36 @@ package com.webquiz.servlet;
 
 import java.io.IOException;
 
-import java.io.PrintWriter;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.webquiz.business.User;
+import com.webquiz.data.UserDB;
+
 public class LoginServlet extends HttpServlet {
-	
-	public class StudentObj
-	{
-		String _userName;
-		StudentObj (String userNameInput) 
-		{
-			_userName = userNameInput;
-		};
-	};
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		doPost(req, resp);
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		String userNameString=req.getParameter("username");
-		String passwordString=req.getParameter("password");
-		
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		if (validLogin(userNameString, passwordString)) {
-			StudentObj studentObj = new StudentObj(userNameString);
-			HttpSession httpSession = req.getSession();
-			httpSession.setAttribute("studentObj", (Object)studentObj);
-			showLoginSuccessForm(resp, userNameString);
-		}
-		else
-		{
-			showLoginDenyForm(resp);
-		}
+        User user = new User();
+        user.setUsername(req.getParameter("username"));
+        user.setPassword(req.getParameter("password"));
 
-
-	}
-
-	private boolean validLogin(String userNameString, String passwordString)
-	{
-		if (userNameString.endsWith("1"))
-		    return true;
-		else 
-			return false;
-	}
-	
-	private void showLoginSuccessForm(HttpServletResponse resp, String userNameString) throws IOException
-	{
-		resp.setContentType("text/html");
-		PrintWriter out=resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		
-		out.println("Welcome " + userNameString + " to Web Quiz!");
-		out.println("</body></html>");
-		out.close();
-	}
-	
-	private void showLoginDenyForm(HttpServletResponse resp) throws IOException
-	{
-		resp.setContentType("text/html");
-		PrintWriter out=resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		
-		out.println("Sorry. Try again. ");
-		out.println("<a href=login.html>Click Me</a>");
-		out.println("</body></html>");
-		out.close();
-	}
+        if (UserDB.validate(user)) {
+            req.setAttribute("user", user);
+            String url = "/selecttest.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(req, resp);
+        } else {
+            req.setAttribute("error", "Sorry. Try again.");
+            String url = "/login.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(req, resp);
+        }
+    }
 }

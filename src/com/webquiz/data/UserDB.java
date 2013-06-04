@@ -4,31 +4,32 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import com.webquiz.business.User;
 
 public class UserDB {
 
     /**
      * Returns the database user.id value or -1 if a matching row was not found
      * 
-     * @param username
-     * @param password
+     * @param user
      * @return
      */
-    public static int validate(String username, String password) {
+    public static boolean validate(User user) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int id = -1;
+
         String query = "SELECT id FROM user WHERE username = ? AND password = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
             rs = ps.executeQuery();
-            if (rs.next())
-                id = rs.getInt("id");
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -36,6 +37,6 @@ public class UserDB {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-        return id;
+        return false;
     }
 }
