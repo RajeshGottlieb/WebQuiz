@@ -5,11 +5,11 @@ import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.webquiz.business.QuizSelection;
+import com.webquiz.business.Quiz;
 import com.webquiz.business.User;
-import com.webquiz.data.QuizSelectionDB;
+import com.webquiz.data.QuizDB;
 
-public class SelectTestServlet extends HttpServlet {
+public class DisplayQuizServlet extends HttpServlet {
 
     /**
      * 
@@ -26,14 +26,19 @@ public class SelectTestServlet extends HttpServlet {
 
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
-
+        int maxQuestionCount = 10;
         String url = "";
 
         if (user != null) {
-            QuizSelection selection = new QuizSelection();
-            QuizSelectionDB.populate(selection);
-            req.setAttribute("selection", selection);
-            url = "/selecttest.jsp";
+            String[] moduleParams = req.getParameterValues("module");            
+            int[] modules = new int[moduleParams.length];
+            for (int i = 0; i < moduleParams.length; ++i)
+                modules[i] = Integer.parseInt(moduleParams[i]);
+            
+            Quiz quiz = new Quiz();
+            QuizDB.generate(quiz, modules, maxQuestionCount);
+            req.setAttribute("quiz", quiz);
+            url = "/displayquiz.jsp";
         } else {
             url = "/login.jsp";
         }

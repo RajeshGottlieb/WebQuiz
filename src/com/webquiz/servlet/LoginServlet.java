@@ -10,6 +10,11 @@ import com.webquiz.data.UserDB;
 
 public class LoginServlet extends HttpServlet {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -23,7 +28,6 @@ public class LoginServlet extends HttpServlet {
         String url = "";
 
         if (UserDB.validate(user)) {
-            // req.setAttribute("user", user);
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", user);
             url = "/SelectTest";
