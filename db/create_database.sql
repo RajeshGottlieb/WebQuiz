@@ -47,7 +47,7 @@ CREATE TABLE question
 (
     id          INT NOT NULL AUTO_INCREMENT,
     module_id   INT,
-    type        ENUM('fill-in-the-blank', 'multiple-choice', 'true-false'),
+    type        ENUM('FILL_IN_THE_BLANK', 'MULTIPLE_CHOICE', 'TRUE_FALSE'),
     text        TEXT,                     -- "(6 x 7) - 5"
     -- fill_in_the_blank_prefix CHAR(40),    -- "$"
     -- fill_in_the_blank_suffix CHAR(40),    -- "ounces"

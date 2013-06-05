@@ -25,9 +25,9 @@ public class QuizDB {
         try {
             quiz.setQuestions(getQuestions(connection, modules, maxQuestionCount));
 
-            for (Question question : quiz.getQuestions()) {
+            for (Question question : quiz.getQuestions())
                 question.setAnswers(getAnswers(connection, question));
-            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -47,6 +47,17 @@ public class QuizDB {
         return str.toString();
     }
 
+    private static Question.Type questionType(String type) {
+        if (type.equals(Question.Type.MULTIPLE_CHOICE.name()))
+            return Question.Type.MULTIPLE_CHOICE;
+        else if (type.equals(Question.Type.TRUE_FALSE.name()))
+            return Question.Type.TRUE_FALSE;
+        else if (type.equals(Question.Type.FILL_IN_THE_BLANK.name()))
+            return Question.Type.FILL_IN_THE_BLANK;
+        else
+            return Question.Type.UNKNOWN;
+    }
+
     static ArrayList<Question> getQuestions(Connection connection, int[] modules, int maxQuestionCount)
             throws SQLException {
         PreparedStatement ps = null;
@@ -54,10 +65,8 @@ public class QuizDB {
 
         ArrayList<Question> questions = new ArrayList<Question>();
 
-        String query = "SELECT id, text, type " +
-                       "FROM question " +
-                       "WHERE module_id IN (" + qmarks(modules.length) + ") " +
-                       "ORDER BY RAND() LIMIT " + maxQuestionCount;
+        String query = "SELECT id, text, type FROM question WHERE module_id IN (" + qmarks(modules.length)
+                + ") ORDER BY RAND() LIMIT " + maxQuestionCount;
 
         try {
             ps = connection.prepareStatement(query);
@@ -68,10 +77,10 @@ public class QuizDB {
             rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String type = rs.getString("type");
+                Question.Type type = questionType(rs.getString("type"));
                 String text = rs.getString("text");
 
-                Question question = new Question(text, id);
+                Question question = new Question(id, type, text);
                 System.out.println("question=" + question.getText() + " type=" + type);
                 questions.add(question);
             }
@@ -88,7 +97,7 @@ public class QuizDB {
 
         ArrayList<Answer> answers = new ArrayList<Answer>();
 
-        String query = "SELECT id, correct, value FROM answer WHERE question_id = ?";
+        String query = "SELECT id, correct, value FROM answer WHERE question_id = ? ORDER BY RAND()";
 
         try {
             ps = connection.prepareStatement(query);

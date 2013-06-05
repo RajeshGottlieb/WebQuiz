@@ -168,8 +168,8 @@ public class XmlToDb {
                     text = getText(child);
                 }
                 if (child.getNodeName() == "answer") {
-                    // true-false and fill-in-the-blank questions only have one answer which is always correct
-                    String correct = (type.equals("true-false") || type.equals("fill-in-the-blank")) ? "true" : "false";
+                    // TRUE_FALSE and FILL_IN_THE_BLANK questions only have one answer which is always correct
+                    String correct = (type.equals("TRUE_FALSE") || type.equals("FILL_IN_THE_BLANK")) ? "true" : "false";
                     Answer ans = new Answer(getAttribute(child, "correct", correct), getText(child));
                     answers.add(ans);
                 }

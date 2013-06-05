@@ -10,8 +10,11 @@ public class Question implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    enum Type {
-        UNKNOWN, FILL_IN_THE_BLANK, MULTIPLE_CHOICE, TRUE_FALSE
+    public enum Type {
+        UNKNOWN, FILL_IN_THE_BLANK, MULTIPLE_CHOICE, TRUE_FALSE;
+        public String getString() {
+            return this.name();
+        }
     }
 
     private int id = -1;
@@ -19,9 +22,10 @@ public class Question implements Serializable {
     private String text = "";
     private ArrayList<Answer> answers = new ArrayList<Answer>();
 
-    public Question(String text, int id) {
-        this.text = text;
+    public Question(int id, Type type, String text) {
         this.id = id;
+        this.type = type;
+        this.text = text;
     }
 
     public Type getType() {
