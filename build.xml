@@ -1,4 +1,4 @@
-<project name="MyApplication" basedir="." default="deploy">    
+<project name="WebQuiz" basedir="." default="deploy">    
 	<property file="build.properties"/>    
 	<property name="src.dir" value="src"/>    
 	<property name="web.dir" value="war"/>    
