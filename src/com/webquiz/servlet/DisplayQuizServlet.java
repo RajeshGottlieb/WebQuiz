@@ -30,14 +30,14 @@ public class DisplayQuizServlet extends HttpServlet {
         String url = "";
 
         if (user != null) {
-            String[] moduleParams = req.getParameterValues("module");            
+            String[] moduleParams = req.getParameterValues("module");
             int[] modules = new int[moduleParams.length];
             for (int i = 0; i < moduleParams.length; ++i)
                 modules[i] = Integer.parseInt(moduleParams[i]);
-            
+
             Quiz quiz = new Quiz();
             QuizDB.generate(quiz, modules, maxQuestionCount);
-            req.setAttribute("quiz", quiz);
+            httpSession.setAttribute("quiz", quiz);
             url = "/displayquiz.jsp";
         } else {
             url = "/login.jsp";

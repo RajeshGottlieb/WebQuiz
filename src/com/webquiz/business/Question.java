@@ -20,6 +20,7 @@ public class Question implements Serializable {
     private int id = -1;
     private Type type = Type.UNKNOWN;
     private String text = "";
+    private String userAnswer = "";
     private ArrayList<Answer> answers = new ArrayList<Answer>();
 
     public Question(int id, Type type, String text) {

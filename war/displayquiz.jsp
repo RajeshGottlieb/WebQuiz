@@ -11,19 +11,26 @@
 
     <!-- This needs more work -->
 
-    <form method="post" action="CheckQuiz">
+    <form method="post" action="GradeQuiz">
         <c:forEach var="question" items="${quiz.questions}">
             ${question.text}<br />
+            <br />
             <c:choose>
                 <c:when test="${question.type eq 'FILL_IN_THE_BLANK'}">
-				fill in the blank
-				</c:when>
+                    <input type="text" name="${question.id}" size=40
+                        value="">
+                </c:when>
                 <c:when test="${question.type eq 'MULTIPLE_CHOICE'}">
-                multiple choice
+                    <c:forEach var="answer" items="${question.answers}">
+                        <input type="checkbox" name="${question.id}"
+                            value="${answer.value}"> ${answer.value}<br />
+                    </c:forEach>
                 </c:when>
                 <c:when test="${question.type eq 'TRUE_FALSE'}">
-                    <input type="radio" name="${question.id}" value="true"> true<br />
-                    <input type="radio" name="${question.id}" value="false"> false
+                    <input type="radio" name="${question.id}"
+                        value="true"> true<br />
+                    <input type="radio" name="${question.id}"
+                        value="false"> false
                 </c:when>
             </c:choose>
             <hr>
