@@ -42,4 +42,8 @@ public class Answer implements Serializable {
     public void setValue(String value) {
         this.value = (value != null) ? value : "";
     }
+    
+    public boolean matches(String testAnswer) {
+        return testAnswer.equals(value);
+    }
 }

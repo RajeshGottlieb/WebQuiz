@@ -20,8 +20,9 @@ public class Question implements Serializable {
     private int id = -1;
     private Type type = Type.UNKNOWN;
     private String text = "";
-    private String userAnswer = "";
     private ArrayList<Answer> answers = new ArrayList<Answer>();
+    private ArrayList<String> userAnswers = new ArrayList<String>();
+    boolean answeredCorrectly = false;
 
     public Question(int id, Type type, String text) {
         this.id = id;
@@ -59,5 +60,46 @@ public class Question implements Serializable {
 
     public void setAnswers(ArrayList<Answer> answers) {
         this.answers = answers;
+    }
+
+    public ArrayList<String> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(ArrayList<String> userAnswers) {
+        this.userAnswers = userAnswers;
+    }
+
+    public ArrayList<Answer> getCorrectAnswers() {
+        ArrayList<Answer> correctAnswers = new ArrayList<Answer>();
+
+        for (Answer answer : getAnswers())
+            if (answer.getCorrect())
+                correctAnswers.add(answer);
+
+        return correctAnswers;
+    }
+
+    public boolean isAnsweredCorrectly() {
+        return answeredCorrectly;
+    }
+
+    public void setAnsweredCorrectly(boolean answeredCorrectly) {
+        this.answeredCorrectly = answeredCorrectly;
+    }
+
+    public void grade() {
+        ArrayList<Answer> correctAnswers = getCorrectAnswers();
+        int userCorrectAnswerCount = 0;
+        
+        // make sure each correct answer matches a user answer
+        for (Answer correctAnswer : correctAnswers) {
+            for (String userAnswer : getUserAnswers()) {
+                if (correctAnswer.matches(userAnswer)) {
+                    userCorrectAnswerCount += 1;
+                }
+            }
+        }
+        setAnsweredCorrectly(userCorrectAnswerCount == correctAnswers.size());
     }
 }

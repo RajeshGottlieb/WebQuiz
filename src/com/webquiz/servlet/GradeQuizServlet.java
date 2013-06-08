@@ -1,10 +1,13 @@
 package com.webquiz.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.webquiz.business.Question;
 import com.webquiz.business.Quiz;
 import com.webquiz.business.User;
 
@@ -31,7 +34,20 @@ public class GradeQuizServlet extends HttpServlet {
             Quiz quiz = (Quiz) httpSession.getAttribute("quiz");
 
             if (quiz != null) {
-                url = "/displayquizresults.jsp";    
+                for (Question question : quiz.getQuestions()) {
+
+                    String question_id = "" + question.getId();
+
+                    // get the users answer(s)
+                    ArrayList<String> userAnswers = new ArrayList<String>();
+                    String[] answers = req.getParameterValues(question_id);
+                    if (answers != null)
+                        userAnswers.addAll(Arrays.asList(answers));
+                    question.setUserAnswers(userAnswers);
+                }
+                quiz.grade();
+
+                url = "/displayquizresults.jsp";
             }
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
