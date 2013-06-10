@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+body {font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+#logo h1 {font-size: 24px; font-weight: bold; font-variant: small-caps; }
+
+div#nav {height: 45px; line-height: 45px; color: #fff; }
+div#nav ul {width: 960px; margin: 0 auto; }
+div#nav ul a {text-decoration: none; }
+div#nav ul a:link {color: #fff; }
+div#nav ul a:visited {color: #fff; }
+div#nav ul a:hover {color: #fff; }
+div#nav ul a:active {color: #fff; }
+div#nav ul a:focus {color: #fff; }
+
+#content {width: 960px; margin: 0 auto; }
+
+#footer {width: 960px; margin: 0 auto; font-size: 10px; }
+
+.cb {clear: both; }
+.cl {clear: left; }
+.cr {clear: right; }
+.fl {float: left; }
+.fr {float: right; }
+
+.bgOne {background: #2c3747; }
+
