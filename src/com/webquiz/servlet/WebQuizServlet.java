@@ -7,10 +7,10 @@ import java.util.Arrays;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.webquiz.business.Question;
-import com.webquiz.business.Quiz;
-import com.webquiz.business.QuizSelection;
-import com.webquiz.business.User;
+import com.webquiz.model.Question;
+import com.webquiz.model.Quiz;
+import com.webquiz.model.QuizSelection;
+import com.webquiz.model.User;
 import com.webquiz.data.QuizDB;
 import com.webquiz.data.QuizSelectionDB;
 import com.webquiz.data.UserDB;

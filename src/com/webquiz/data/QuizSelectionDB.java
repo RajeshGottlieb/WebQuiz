@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.webquiz.business.QuizSelection;
-import com.webquiz.business.Subject;
-import com.webquiz.business.Category;
-import com.webquiz.business.Module;
+import com.webquiz.model.QuizSelection;
+import com.webquiz.model.Subject;
+import com.webquiz.model.Category;
+import com.webquiz.model.Module;
 
 public class QuizSelectionDB {
 

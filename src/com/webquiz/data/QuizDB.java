@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.webquiz.business.Answer;
-import com.webquiz.business.Question;
-import com.webquiz.business.Quiz;
+import com.webquiz.model.Answer;
+import com.webquiz.model.Question;
+import com.webquiz.model.Quiz;
 
 public class QuizDB {
 
