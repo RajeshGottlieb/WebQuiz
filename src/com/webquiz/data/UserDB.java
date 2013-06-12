@@ -9,12 +9,13 @@ import com.webquiz.business.User;
 public class UserDB {
 
     /**
-     * Returns the database user.id value or -1 if a matching row was not found
+     * Returns matching User object from the database
      * 
-     * @param user
-     * @return
-     */
-    public static boolean validate(User user) {
+     * @param username
+     * @param password
+     * @return User or null if not found
+     */    
+    public static User getUser(String username, String password) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -23,12 +24,12 @@ public class UserDB {
         String query = "SELECT id FROM user WHERE username = ? AND password = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
+            ps.setString(1, username);
+            ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
-                user.setId(rs.getInt("id"));
-                return true;
+                User user = new User(username, password, rs.getInt("id"));
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,6 +38,6 @@ public class UserDB {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-        return false;
+        return null;
     }
 }

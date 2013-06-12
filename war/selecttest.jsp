@@ -6,7 +6,8 @@
 
 <!-- This needs more work -->
 
-<form method="post" action="DisplayQuiz">
+<form method="post" action="Servlet">
+    <input type="hidden" name="action" value="SELECT_QUIZ">
     <ul>
         <c:forEach var="subject" items="${selection.subjects}">
             <li>${subject.name}</li>

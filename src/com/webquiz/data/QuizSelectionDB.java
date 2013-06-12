@@ -20,7 +20,9 @@ public class QuizSelectionDB {
      * @param user
      * @return
      */
-    public static void populate(QuizSelection selection) {
+    public static QuizSelection populate() {
+        QuizSelection selection = new QuizSelection();
+        
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -40,6 +42,7 @@ public class QuizSelectionDB {
         } finally {
             pool.freeConnection(connection);
         }
+        return selection;
     }
 
     static ArrayList<Subject> getSubjects(Connection connection) throws SQLException {

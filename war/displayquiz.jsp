@@ -4,7 +4,8 @@
 
 <h1>Quiz</h1>
 
-<form method="post" action="GradeQuiz">
+<form method="post" action="Servlet">
+    <input type="hidden" name="action" value="GRADE_QUIZ">
     <c:forEach var="question" items="${quiz.questions}">
             ${question.text}<br />
         <br />
