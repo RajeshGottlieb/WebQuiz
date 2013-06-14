@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.webquiz.business.Answer;
-import com.webquiz.business.Question;
-import com.webquiz.business.Quiz;
+import com.webquiz.model.Answer;
+import com.webquiz.model.Question;
+import com.webquiz.model.Quiz;
 
 public class QuizDB {
 
@@ -18,7 +18,9 @@ public class QuizDB {
      * @param user
      * @return
      */
-    public static void generate(Quiz quiz, int[] modules, int maxQuestionCount) {
+    public static Quiz generate(int[] modules, int maxQuestionCount) {
+        Quiz quiz = new Quiz();
+        
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -33,6 +35,7 @@ public class QuizDB {
         } finally {
             pool.freeConnection(connection);
         }
+        return quiz;
     }
 
     static String qmarks(int count) {

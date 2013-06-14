@@ -12,49 +12,17 @@
     </resource-ref>
 
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.webquiz.servlet.LoginServlet</servlet-class>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>com.webquiz.servlet.WebQuizServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>SelectTest</servlet-name>
-        <servlet-class>com.webquiz.servlet.SelectTestServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>SelectTest</servlet-name>
-        <url-pattern>/SelectTest</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DisplayQuiz</servlet-name>
-        <servlet-class>com.webquiz.servlet.DisplayQuizServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>DisplayQuiz</servlet-name>
-        <url-pattern>/DisplayQuiz</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>GradeQuiz</servlet-name>
-        <servlet-class>com.webquiz.servlet.GradeQuizServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>GradeQuiz</servlet-name>
-        <url-pattern>/GradeQuiz</url-pattern>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/Servlet</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

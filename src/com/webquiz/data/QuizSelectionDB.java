@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.webquiz.business.QuizSelection;
-import com.webquiz.business.Subject;
-import com.webquiz.business.Category;
-import com.webquiz.business.Module;
+import com.webquiz.model.QuizSelection;
+import com.webquiz.model.Subject;
+import com.webquiz.model.Category;
+import com.webquiz.model.Module;
 
 public class QuizSelectionDB {
 
@@ -20,7 +20,9 @@ public class QuizSelectionDB {
      * @param user
      * @return
      */
-    public static void populate(QuizSelection selection) {
+    public static QuizSelection populate() {
+        QuizSelection selection = new QuizSelection();
+        
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -40,6 +42,7 @@ public class QuizSelectionDB {
         } finally {
             pool.freeConnection(connection);
         }
+        return selection;
     }
 
     static ArrayList<Subject> getSubjects(Connection connection) throws SQLException {

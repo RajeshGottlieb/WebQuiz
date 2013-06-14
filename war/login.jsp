@@ -10,9 +10,9 @@
     }
 %>
 
-<form method="post" action="Login">
-    <br> <br> Please enter your User Name and Password.<br>
-    <br>
+<form method="post" action="Servlet">
+    <input type="hidden" name="action" value="LOGIN"> <br> <br>
+    Please enter your User Name and Password.<br> <br>
     <table cellpadding='4' cellspacing='2'>
         <tr>
             <td>User Name:</td>

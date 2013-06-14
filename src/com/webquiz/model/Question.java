@@ -1,4 +1,4 @@
-package com.webquiz.business;
+package com.webquiz.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

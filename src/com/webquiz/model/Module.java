@@ -1,9 +1,8 @@
-package com.webquiz.business;
+package com.webquiz.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Category implements Serializable {
+public class Module implements Serializable {
 
     /**
      * 
@@ -12,9 +11,8 @@ public class Category implements Serializable {
 
     private String name = "";
     private int id = -1;
-    private ArrayList<Module> modules = new ArrayList<Module>();
 
-    public Category(String name, int id) {
+    public Module(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -33,13 +31,5 @@ public class Category implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-    
-    public ArrayList<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(ArrayList<Module> modules) {
-        this.modules = modules;
     }
 }
