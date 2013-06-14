@@ -1,19 +1,24 @@
 @charset "utf-8";
 
 body {font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+h1 {font-size: 30px; padding-bottom: 16px; }
+h2 {font-size: 24px; padding-bottom: 16px; }
+h3 {font-size: 20px; padding-bottom: 16px; }
 
-#logo h1 {font-size: 24px; font-weight: bold; font-variant: small-caps; }
+#logo h1 {font-size: 24px; font-weight: bold; font-variant: small-caps; margin-right: 40px; }
 
 div#nav {height: 45px; line-height: 45px; color: #fff; }
 div#nav ul {width: 960px; margin: 0 auto; }
+div#nav ul li + li a {display: inline-block; height: 45px; padding: 0 10px; }
 div#nav ul a {text-decoration: none; }
 div#nav ul a:link {color: #fff; }
 div#nav ul a:visited {color: #fff; }
 div#nav ul a:hover {color: #fff; }
 div#nav ul a:active {color: #fff; }
 div#nav ul a:focus {color: #fff; }
+div#nav ul li.hoverA a:hover {background: #fff; color: #2c3747; } 
 
-#content {width: 960px; margin: 0 auto; }
+#content {width: 960px; margin: 20px auto; }
 
 #footer {width: 960px; margin: 0 auto; font-size: 10px; }
 
@@ -24,4 +29,3 @@ div#nav ul a:focus {color: #fff; }
 .fr {float: right; }
 
 .bgOne {background: #2c3747; }
-
