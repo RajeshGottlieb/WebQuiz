@@ -18,8 +18,6 @@ public class LoginService extends WebQuizService {
      */
     private static final long serialVersionUID = 1L;
 
-    static final int MAX_QUESTION_COUNT = 10;
-
     @Override
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
