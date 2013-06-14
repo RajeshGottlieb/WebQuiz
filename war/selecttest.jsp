@@ -16,7 +16,7 @@
 %>
 
 <form method="post" action="Servlet">
-    <input type="hidden" name="action" value="SELECT_QUIZ">
+    <input type="hidden" name="action" value="GENERATE_QUIZ">
 <%
 QuizSelection selection = (QuizSelection) request.getAttribute("selection"); 
 

@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import com.webquiz.service.Service;
 import com.webquiz.service.LoginService;
 import com.webquiz.service.QuizGraderService;
+import com.webquiz.service.QuizGeneratorService;
 import com.webquiz.service.QuizSelectorService;
 
 public class WebQuizServlet extends HttpServlet {
@@ -25,6 +26,7 @@ public class WebQuizServlet extends HttpServlet {
         super.init();
         serviceMap.put("LOGIN", new LoginService());
         serviceMap.put("SELECT_QUIZ", new QuizSelectorService());
+        serviceMap.put("GENERATE_QUIZ", new QuizGeneratorService());
         serviceMap.put("GRADE_QUIZ", new QuizGraderService());
     }
 

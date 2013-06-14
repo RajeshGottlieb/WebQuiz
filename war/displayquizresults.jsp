@@ -6,6 +6,8 @@
 
 <h1>Quiz Results</h1>
 
+<a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Try another quiz</a><br /><br />
+
 <%
 Quiz quiz = (Quiz) request.getSession().getAttribute("quiz"); 
 
@@ -47,5 +49,7 @@ if (quiz != null) {
     }
 }
 %>
+
+<a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Try another quiz</a>
 
 <%@ include file="include/footer.html"%>
