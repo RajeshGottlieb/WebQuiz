@@ -1,31 +1,62 @@
 <%@ include file="include/header.jsp"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.webquiz.model.QuizSelection" %>
+<%@ page import="com.webquiz.model.Category" %>
+<%@ page import="com.webquiz.model.Subject" %>
+<%@ page import="com.webquiz.model.Module" %>
 
 <h1>Select the modules you want to be quizzed on</h1>
-
-<!-- This needs more work -->
+<%
+    String error = (String) request.getAttribute("error");
+    if (error != null) {
+%>
+<em><font color="red"><%=error%></font></em>
+<%
+    }
+%>
 
 <form method="post" action="Servlet">
     <input type="hidden" name="action" value="SELECT_QUIZ">
+<%
+QuizSelection selection = (QuizSelection) request.getAttribute("selection"); 
+
+if (selection != null) {
+%>
     <ul>
-        <c:forEach var="subject" items="${selection.subjects}">
-            <li>${subject.name}</li>
+<%
+    for (Subject subject : selection.getSubjects()) {
+        String subject_name = subject.getName();
+%>
+        <li><%=subject_name%></li>
+        <ul>
+<%
+        for (Category category : subject.getCategories()) {
+            String category_name = category.getName();
+%>
+            <li><%=category_name%></li>
             <ul>
-                <c:forEach var="category" items="${subject.categories}">
-                    <li>${category.name}</li>
-                    <ul>
-                        <c:forEach var="module"
-                            items="${category.modules}">
-                            <li><input type="checkbox"
-                                name="module" value=${module.id}>${module.name}</li>
-                        </c:forEach>
-                    </ul>
-                </c:forEach>
+<%
+            for (Module module : category.getModules()) {
+                int module_id = module.getId();
+                String module_name = module.getName();
+%>
+                <li><input type="checkbox" name="module" value="<%=module_id%>"><%=module_name%></li>
+<%
+            }
+%>
             </ul>
-        </c:forEach>
+<%
+        }
+%>
+        </ul>
+<%
+    }
+%>
     </ul>
-    <br /> <input type="submit" value="Submit">
+<%
+}
+%>
+<br /> <input type="submit" value="Submit">
 </form>
 
 <%@ include file="include/footer.html"%>

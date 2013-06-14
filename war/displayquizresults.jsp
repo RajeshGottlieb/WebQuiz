@@ -1,34 +1,51 @@
 <%@ include file="include/header.jsp"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.webquiz.model.Quiz" %>
+<%@ page import="com.webquiz.model.Question" %>
+<%@ page import="com.webquiz.model.Answer" %>
 
 <h1>Quiz Results</h1>
 
-<!-- This needs more work -->
+<%
+Quiz quiz = (Quiz) request.getSession().getAttribute("quiz"); 
 
-<em>${quiz.correctCount} out of ${quiz.questionCount} correct</em>
-<hr>
-
-<c:forEach var="question" items="${quiz.questions}">
-        ${question.text}<br />
-    <br />
-
-        Your answer:<br />
-    <c:forEach var="userAnswer" items="${question.userAnswers}">
-            ${userAnswer}<br />
-    </c:forEach>
-    <br />
-
-    <c:choose>
-        <c:when test="${question.answeredCorrectly}">
-            <font color="green">Correct</font>
-        </c:when>
-        <c:otherwise>
-            <font color="red">Wrong</font>
-        </c:otherwise>
-    </c:choose>
-
+if (quiz != null) {
+    int quiz_correctCount = quiz.getCorrectCount();
+    int quiz_questionCount = quiz.getQuestionCount();
+%>
+    <em><%=quiz_correctCount%> out of <%=quiz_questionCount%> correct</em>
     <hr>
-</c:forEach>
+<%    
+    for (Question question : quiz.getQuestions()) {
+        int question_id = question.getId();
+        Question.Type question_type = question.getType();
+        String question_text = question.getText();
+%>
+        <%=question_text%><br /> <br />
+        Your answer:<br />
+<%
+        for (String userAnswer : question.getUserAnswers()) {
+%>
+           <%=userAnswer%><br /> 
+<%
+        }
+%>
+        <br />    
+<%
+        if (question.isAnsweredCorrectly()) {
+%>
+            <font color="green">Correct</font>
+<%
+        } else {
+%>
+            <font color="red">Wrong</font>
+<%        
+        }
+%>
+<hr>
+<%
+    }
+}
+%>
 
 <%@ include file="include/footer.html"%>
