@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.webquiz.service.LogoutService;
 import com.webquiz.service.Service;
 import com.webquiz.service.LoginService;
 import com.webquiz.service.QuizGraderService;
@@ -25,6 +26,7 @@ public class WebQuizServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         serviceMap.put("LOGIN", new LoginService());
+        serviceMap.put("LOGOUT", new LogoutService());
         serviceMap.put("SELECT_QUIZ", new QuizSelectorService());
         serviceMap.put("GENERATE_QUIZ", new QuizGeneratorService());
         serviceMap.put("GRADE_QUIZ", new QuizGraderService());

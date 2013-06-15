@@ -7,11 +7,21 @@
 <link rel="stylesheet" type="text/css" href="css/site.css" />
 </head>
 <body>
+<%@ page import="com.webquiz.model.User" %>
+
+<%
+User user = (User) request.getSession().getAttribute("user"); 
+%>
+
 <div id="nav" class="bgOne">  <!-- //// Start Navigation ////////////////////////////////////////////////////////// -->
     <ul>
         <li id="logo" class="fl"><h1><a href="home.jsp">Web Quiz</a></h1></li>
         <li class="fl hoverA"><a href="/about">About</a></li>
-        <li class="fr hoverA"><a href="login.html">Login</a></li>
+<% if (user != null) { %>
+        <li class="fr hoverA"><a href="/WebQuiz/Servlet?action=LOGOUT">Logout</a></li>
+<% } else { %>
+        <li class="fr hoverA"><a href="/WebQuiz/Servlet?action=LOGIN">Login</a></li>
+<% } %>
     </ul>
 </div>                        <!-- //// End Navigation //////////////////////////////////////////////////////////// -->
 
