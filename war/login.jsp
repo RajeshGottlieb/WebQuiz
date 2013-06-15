@@ -11,7 +11,6 @@
 %>
 
 <form method="post" action="Servlet">
-    <input type="hidden" name="action" value="LOGIN"> <br> <br>
     Please enter your User Name and Password.<br> <br>
     <table cellpadding='4' cellspacing='2'>
         <tr>
@@ -23,7 +22,9 @@
             <td><input type="password" name="password"></td>
         </tr>
     </table>
-    <br /> <input type="submit" name="Submit" value="Submit">
+    <br /> <input type="submit" name="action" value="LOGIN">
+    <br /> <input type="submit" name="action" value="REGISTER">
+    
 </form>
 
 <%@ include file="include/footer.html"%>
