@@ -49,11 +49,10 @@ public class UserDB {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String query = "SELECT id FROM user WHERE username = ? AND password = ?";
+		String query = "SELECT id FROM user WHERE username = ?";
 		try {
 			ps = connection.prepareStatement(query);
 			ps.setString(1, username);
-			ps.setString(2, password);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				System.out.println("place 1");
