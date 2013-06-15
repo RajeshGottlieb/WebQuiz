@@ -6,11 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.webquiz.data.QuizSelectionDB;
-import com.webquiz.data.UserDB;
-import com.webquiz.model.QuizSelection;
-import com.webquiz.model.User;
-
 public class LogoutService extends WebQuizService {
 
     /**
