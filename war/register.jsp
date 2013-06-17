@@ -1,6 +1,6 @@
 <%@ include file="include/header.jsp"%>
 
-<h1>Register to Web Quiz</h1>
+<h1>Register with <%= application.getInitParameter("siteName") %></h1>
 <%
     String error = (String) request.getAttribute("error");
     if (error != null) {

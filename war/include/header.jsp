@@ -16,7 +16,7 @@ User user = (User) request.getSession().getAttribute("user");
 
 <div id="nav" class="bgOne">  <!-- //// Start Navigation ////////////////////////////////////////////////////////// -->
     <ul>
-        <li id="logo" class="fl"><h1><a href="home.jsp">Web Quiz</a></h1></li>
+        <li id="logo" class="fl"><h1><%= application.getInitParameter("siteName") %></h1></li>
         <li class="fl hoverA"><a href="/about">About</a></li>
 <% if (user != null) { 
 	   String username = user.getUsername();
