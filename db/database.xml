@@ -61,7 +61,7 @@
                 </question>
 
                 <question type="TRUE_FALSE">
-                    <text>2 + 3 = 6</text>
+                    <text>9 + 3 = 11</text>
                     <answer>false</answer>
                 </question>
 
@@ -181,6 +181,93 @@
 
             </module>
         </category>
+
+        <category name="Multiplication">
+            <module name="Single Digit">
+
+                <question type="MULTIPLE_CHOICE">
+                    <text>3 x 4</text>
+                    <answer correct="true">12</answer>
+                    <answer>14</answer>
+                    <answer>7</answer>
+                    <answer>6</answer>
+                    <answer>8</answer>
+                </question>
+
+                <question type="MULTIPLE_CHOICE">
+                    <text>6 x 5</text>
+                    <answer correct="true">30</answer>
+                    <answer>11</answer>
+                    <answer>12</answer>
+                    <answer>35</answer>
+                    <answer>9</answer>
+                </question>
+
+                <question type="MULTIPLE_CHOICE">
+                    <text>9 x 7</text>
+                    <answer correct="true">63</answer>
+                    <answer>2</answer>
+                    <answer>16</answer>
+                    <answer>17</answer>
+                    <answer>97</answer>
+                </question>
+
+                <question type="MULTIPLE_CHOICE">
+                    <text>5 x 7</text>
+                    <answer correct="true">35</answer>
+                    <answer>12</answer>
+                    <answer>57</answer>
+                    <answer>14</answer>
+                    <answer>42</answer>
+                </question>
+
+                <question type="TRUE_FALSE">
+                    <text>6 x 7 = 13</text>
+                    <answer>false</answer>
+                </question>
+
+                <question type="TRUE_FALSE">
+                    <text>2 x 7 = 14</text>
+                    <answer>true</answer>
+                </question>
+
+                <question type="TRUE_FALSE">
+                    <text>2 x 3 = 6</text>
+                    <answer>true</answer>
+                </question>
+
+                <question type="TRUE_FALSE">
+                    <text>9 x 3 = 37</text>
+                    <answer>false</answer>
+                </question>
+
+                <question type="FILL_IN_THE_BLANK">
+                    <text>What is 6 times 9?</text>
+                    <type>FILL_IN_THE_BLANK</type>
+                    <answer>54</answer>
+                </question>
+
+                <question type="FILL_IN_THE_BLANK">
+                    <text>What is 5 times 3?</text>
+                    <type>FILL_IN_THE_BLANK</type>
+                    <answer>15</answer>
+                </question>
+
+                <question type="FILL_IN_THE_BLANK">
+                    <text>What is 7 times 8?</text>
+                    <type>FILL_IN_THE_BLANK</type>
+                    <answer>56</answer>
+                </question>
+
+                <question type="FILL_IN_THE_BLANK">
+                    <text>What is 4 times 6?</text>
+                    <type>FILL_IN_THE_BLANK</type>
+                    <answer>24</answer>
+                </question>
+
+            </module>
+        </category>
+
     </subject>
 
 </quiz-db>
