@@ -5,6 +5,7 @@
 <title>Web Quiz</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/site.css" />
+<link rel="stylesheet" type="text/css" href="css/page.css" />
 </head>
 <body>
 <%@ page import="com.webquiz.model.User" %>
@@ -21,7 +22,7 @@ User user = (User) request.getSession().getAttribute("user");
 	   String username = user.getUsername();
 %>
         <li class="fr hoverA"><a href="/WebQuiz/Servlet?action=LOGOUT">Logout</a></li>
-        <li class="fr">Welcome <%= username %></li>
+        <li class="fr pr10">Welcome <%= username %></li>
 <% } %>
     </ul>
 </div>                        <!-- //// End Navigation //////////////////////////////////////////////////////////// -->
