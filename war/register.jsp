@@ -1,6 +1,6 @@
 <%@ include file="include/header.jsp"%>
 
-<h1>Login to Web Quiz</h1>
+<h1>Register to Web Quiz</h1>
 <%
     String error = (String) request.getAttribute("error");
     if (error != null) {
@@ -11,6 +11,7 @@
 %>
 
 <form method="post" action="Servlet">
+    <input type="hidden" name="action" value="NEWUSER"> <br> <br>
     Please enter your User Name and Password.<br> <br>
     <table cellpadding='4' cellspacing='2'>
         <tr>
@@ -22,8 +23,7 @@
             <td><input type="password" name="password"></td>
         </tr>
     </table>
-    <br /> <input type="submit" name="action" value="LOGIN">
-    <br /> <input type="submit" name="action" value="REGISTER">
+    <br /> <input type="submit" name="Register" value="REGISTER">
     
 </form>
 
