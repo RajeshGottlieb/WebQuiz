@@ -1,3 +1,19 @@
+-- General Purpose Commands
+-- -------------------------------------------------------------------------------------------------------------------
+-- SHOW DATABASES;
+-- USE web_quiz;
+-- SHOW TABLES;
+-- SHOW COLUMNS IN user;
+-- SHOW COLUMNS IN subject;
+-- SHOW COLUMNS IN category;
+-- SHOW COLUMNS IN module;
+-- SHOW COLUMNS IN question;
+-- SHOW COLUMNS IN answer;
+-- SELECT * FROM user;
+-- SELECT username, password from user;
+-- DROP DATABASE oats;
+-- -------------------------------------------------------------------------------------------------------------------
+
 -- discard old version of db
 DROP DATABASE IF EXISTS web_quiz;
 
