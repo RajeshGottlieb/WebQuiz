@@ -4,6 +4,7 @@ body {font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 h1 {font-size: 30px; padding-bottom: 16px; }
 h2 {font-size: 24px; padding-bottom: 16px; }
 h3 {font-size: 20px; padding-bottom: 16px; }
+p {padding-bottom: 16px; }
 
 #logo h1 {font-size: 24px; font-weight: bold; font-variant: small-caps; margin-right: 40px; }
 
@@ -31,3 +32,4 @@ div#nav ul li.hoverA a:hover {background: #fff; color: #2c3747; }
 .pr10 {padding-right: 10px; }
 
 .bgOne {background: #2c3747; }
+.error {color: #F00; font-weight: bold; }
