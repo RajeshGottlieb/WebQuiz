@@ -1,4 +1,4 @@
-<%@ include file="include/header.jsp"%>
+<jsp:include page="include/header.jsp" />
 
 <h1>Register with <%= application.getInitParameter("siteName") %></h1>
 <%
@@ -27,4 +27,4 @@
     
 </form>
 
-<%@ include file="include/footer.html"%>
+<%@ include file="include/footer.jsp"%>

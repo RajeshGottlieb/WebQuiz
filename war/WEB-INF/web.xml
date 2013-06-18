@@ -12,10 +12,12 @@
     </resource-ref>
     
     <context-param>
-    <param-name>companyName</param-name>
-    <param-value>Web Quiz Group</param-value>
-    <param-name>siteName</param-name>
-    <param-value>Web Quiz</param-value>
+        <param-name>companyName</param-name>
+        <param-value>Web Quiz Group</param-value>
+    </context-param>
+    <context-param>
+        <param-name>siteName</param-name>
+        <param-value>Web Quiz</param-value>
     </context-param>
 
     <servlet>

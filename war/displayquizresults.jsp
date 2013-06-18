@@ -1,4 +1,4 @@
-<%@ include file="include/header.jsp"%>
+<jsp:include page="include/header.jsp" />
 
 <%@ page import="com.webquiz.model.Quiz" %>
 <%@ page import="com.webquiz.model.Question" %>
@@ -52,4 +52,4 @@ if (quiz != null) {
 
 <a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Try another quiz</a>
 
-<%@ include file="include/footer.html"%>
+<%@ include file="include/footer.jsp"%>

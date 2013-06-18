@@ -1,4 +1,4 @@
-<%@ include file="include/header.jsp"%>
+<jsp:include page="include/header.jsp" />
 
 <%@ page import="com.webquiz.model.QuizSelection" %>
 <%@ page import="com.webquiz.model.Category" %>
@@ -59,4 +59,4 @@ if (selection != null) {
 <br /> <input type="submit" value="Submit">
 </form>
 
-<%@ include file="include/footer.html"%>
+<%@ include file="include/footer.jsp"%>
