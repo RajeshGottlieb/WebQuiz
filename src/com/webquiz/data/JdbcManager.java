@@ -21,28 +21,32 @@ public class JdbcManager {
     }
 
     public static void close(Connection c) {
-        try {
-            c.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (c != null) {
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void close(Statement s) {
-        try {
-            if (s != null)
+        if (s != null) {
+            try {
                 s.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void close(ResultSet rs) {
-        try {
-            if (rs != null)
+        if (rs != null) {
+            try {
                 rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
