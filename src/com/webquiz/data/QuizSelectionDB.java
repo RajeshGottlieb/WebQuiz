@@ -23,10 +23,10 @@ public class QuizSelectionDB {
     public static QuizSelection populate() {
         QuizSelection selection = new QuizSelection();
         
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
+        Connection connection = null;
 
         try {
+            connection = JdbcManager.getConnection();
             selection.setSubjects(getSubjects(connection));
 
             for (Subject subject : selection.getSubjects()) {
@@ -37,10 +37,10 @@ public class QuizSelectionDB {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            pool.freeConnection(connection);
+            JdbcManager.close(connection);
         }
         return selection;
     }
@@ -64,8 +64,8 @@ public class QuizSelectionDB {
                 subjects.add(subject);
             }
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closeStatement(stmt);
+            JdbcManager.close(rs);
+            JdbcManager.close(stmt);
         }
         return subjects;
     }
@@ -90,8 +90,8 @@ public class QuizSelectionDB {
                 categories.add(category);
             }
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            JdbcManager.close(rs);
+            JdbcManager.close(ps);
         }
         return categories;
     }
@@ -116,8 +116,8 @@ public class QuizSelectionDB {
                 modules.add(module);
             }
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            JdbcManager.close(rs);
+            JdbcManager.close(ps);
         }
         return modules;
     }

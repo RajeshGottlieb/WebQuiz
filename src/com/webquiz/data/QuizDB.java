@@ -20,20 +20,18 @@ public class QuizDB {
      */
     public static Quiz generate(int[] modules, int maxQuestionCount) {
         Quiz quiz = new Quiz();
-        
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-
+        Connection connection = null;
         try {
+            connection = JdbcManager.getConnection();
             quiz.setQuestions(getQuestions(connection, modules, maxQuestionCount));
 
             for (Question question : quiz.getQuestions())
                 question.setAnswers(getAnswers(connection, question));
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            pool.freeConnection(connection);
+            JdbcManager.close(connection);
         }
         return quiz;
     }
@@ -88,8 +86,8 @@ public class QuizDB {
                 questions.add(question);
             }
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            JdbcManager.close(rs);
+            JdbcManager.close(ps);
         }
         return questions;
     }
@@ -116,8 +114,8 @@ public class QuizDB {
                 answers.add(answer);
             }
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            JdbcManager.close(rs);
+            JdbcManager.close(ps);
         }
         return answers;
     }

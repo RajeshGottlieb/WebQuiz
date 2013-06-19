@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>
+<Context reloadable="true">
 
-    <Resource name="jdbc/web_quiz" auth="Container"
-        username="admin" password="admin"
+    <Resource
+        name="jdbc/web_quiz"
+        auth="Container"
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/web_quiz"
         type="javax.sql.DataSource"
-        maxActive="20" maxIdle="10" />
+        username="admin"
+        password="admin"
+        maxActive="4"
+        maxIdle="2"
+        maxWait="5000" />
 
 </Context>
