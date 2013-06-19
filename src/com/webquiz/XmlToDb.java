@@ -29,7 +29,7 @@ public class XmlToDb {
 
             // get the database properties
             String sql_driver = prop.getProperty("sql.driver");
-            String sql_url = prop.getProperty("sql.url") + prop.getProperty("sql.database");
+            String sql_url = prop.getProperty("sql.url");
             String sql_user = prop.getProperty("sql.user");
             String sql_pass = prop.getProperty("sql.pass");
 
