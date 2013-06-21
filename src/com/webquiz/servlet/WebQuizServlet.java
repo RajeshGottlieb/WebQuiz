@@ -14,6 +14,7 @@ import com.webquiz.model.Question;
 import com.webquiz.model.Quiz;
 import com.webquiz.model.QuizSelection;
 import com.webquiz.model.User;
+import com.webquiz.service.*;
 
 public class WebQuizServlet extends HttpServlet {
 
@@ -87,14 +88,14 @@ public class WebQuizServlet extends HttpServlet {
 					"Sorry, invalid username or password. Try again.");
 			url = "/login.jsp";
 		} else {
-			User user = UserDB.getUser(username, password);
+			User user = LoginService.getUser(username, password);
 
 			if (user != null) {
 				request.getSession().setAttribute("user", user);
 				selectQuiz(request, response);
 				return;
 			} else {
-				if (!username.equals(""))
+				if (!LoginService.validateUsername(username))
 					request.setAttribute("error",
 							"Sorry, wrong username/password. Try again.");
 				url = "/login.jsp";
@@ -115,13 +116,13 @@ public class WebQuizServlet extends HttpServlet {
 		String username = getParameter(request, "username");
 		String password = getParameter(request, "password");
 
-		if (username.equals("") || password.equals("")) {
+		if (!LoginService.validateUsername(username) || !LoginService.validatePassword(password)) {
 			request.setAttribute("error",
 					"Sorry, invalid username or password. Try again.");
 			url = "/register.jsp";
 		} else {
 
-			boolean rc = UserDB.addUser(username, password);
+			boolean rc = LoginService.addUser(username, password);
 
 			if (rc == true) {
 				url = "/login.jsp";

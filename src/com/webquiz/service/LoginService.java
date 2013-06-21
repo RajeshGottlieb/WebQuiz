@@ -1,41 +1,38 @@
 package com.webquiz.service;
 
-import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.webquiz.data.QuizSelectionDB;
 import com.webquiz.data.UserDB;
-import com.webquiz.model.QuizSelection;
 import com.webquiz.model.User;
 
-public class LoginService extends WebQuizService {
+public class LoginService {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
+    
+	public static boolean addUser(String username, String password) {
+		return UserDB.addUser(username, password);
+	}
 
-    @Override
-    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
-        String url = "";
-        String username = getParameter(request, "username");
-        String password = getParameter(request, "password");
-        User user = UserDB.getUser(username, password);
+	public static User getUser(String username, String password) {
+		return UserDB.getUser(username, password);
+	}
 
-        if (user != null) {
-            request.getSession().setAttribute("user", user);
-            QuizSelection selection = QuizSelectionDB.populate();
-            request.setAttribute("selection", selection);
-            url = "/selecttest.jsp";
-        } else {
-            if (!username.equals(""))
-                request.setAttribute("error", "Sorry. Try again.");
-            url = "/login.jsp";
-        }
-        forward(request, response, url);
-    }
+	public static boolean validateUsername(String username) {
+		if (username.equals(""))
+			return false;
+		else
+			return true;
+	}
+	
+	public static boolean validatePassword(String password) {
+		if (password.equals(""))
+			return false;
+		if (password.length() < 6)
+			return false;
+		if (!password.matches(".*[0-9].*"))
+			return false;
+		return true;
+	}
 }
