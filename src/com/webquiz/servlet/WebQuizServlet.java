@@ -178,7 +178,7 @@ public class WebQuizServlet extends HttpServlet {
 						"Please select one or more modules.");
 				QuizSelection selection = QuizSelectionDB.populate();
 				request.setAttribute("selection", selection);
-				url = "/selecttest.jsp";
+				url = "/selectquiz.jsp";
 			}
 		} else {
 			url = "/login.jsp";
@@ -210,7 +210,7 @@ public class WebQuizServlet extends HttpServlet {
 				quiz.grade();
 				url = "/displayquizresults.jsp";
 			} else {
-				url = "/selecttest.jsp";
+				url = "/selectquiz.jsp";
 			}
 		} else {
 			url = "/login.jsp";
