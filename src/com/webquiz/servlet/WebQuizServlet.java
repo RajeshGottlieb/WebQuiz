@@ -148,7 +148,7 @@ public class WebQuizServlet extends HttpServlet {
 		if (user != null) {
 			QuizSelection selection = QuizSelectionDB.populate();
 			request.setAttribute("selection", selection);
-			url = "/selecttest.jsp";
+			url = "/selectquiz.jsp";
 		} else {
 			url = "/login.jsp";
 		}
