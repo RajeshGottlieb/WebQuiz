@@ -10,7 +10,7 @@
     String error = (String) request.getAttribute("error");
     if (error != null) {
 %>
-<em><font color="red"><%=error%></font></em>
+<p class="error"><%=error%></p>
 <%
     }
 %>
@@ -27,20 +27,20 @@ if (selection != null) {
     for (Subject subject : selection.getSubjects()) {
         String subject_name = subject.getName();
 %>
-        <li><%=subject_name%></li>
+        <li><h2><%=subject_name%></h2></li>
         <ul>
 <%
         for (Category category : subject.getCategories()) {
             String category_name = category.getName();
 %>
-            <li><%=category_name%></li>
-            <ul>
+            <li><h3 class="pl30"><%=category_name%></h3></li>
+            <ul class="pb20">
 <%
             for (Module module : category.getModules()) {
                 int module_id = module.getId();
                 String module_name = module.getName();
 %>
-                <li><input type="checkbox" name="module" value="<%=module_id%>"><%=module_name%></li>
+                <li class="pl60"><input type="checkbox" name="module" value="<%=module_id%>"><%=module_name%></li>
 <%
             }
 %>
