@@ -7,9 +7,6 @@ import java.util.Arrays;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.webquiz.data.QuizDB;
-import com.webquiz.data.QuizSelectionDB;
-import com.webquiz.data.UserDB;
 import com.webquiz.model.Question;
 import com.webquiz.model.Quiz;
 import com.webquiz.model.QuizSelection;
@@ -59,8 +56,6 @@ public class WebQuizServlet extends HttpServlet {
 			login(request, response);
 		else if (action.equals("REGISTER"))
 			register(request, response);
-		else if (action.equals("NEWUSER"))
-			newUser(request, response);
 		else if (action.equals("LOGOUT"))
 			logout(request, response);
 		else if (action.equals("SELECT_QUIZ"))
@@ -83,7 +78,7 @@ public class WebQuizServlet extends HttpServlet {
 		String username = getParameter(request, "username");
 		String password = getParameter(request, "password");
 
-		if (username.equals("") || password.equals("")) {
+		if (!LoginService.validateUsername(username) || !LoginService.validatePassword(password)){
 			request.setAttribute("error",
 					"Sorry, invalid username or password. Try again.");
 			url = "/login.jsp";
@@ -104,13 +99,8 @@ public class WebQuizServlet extends HttpServlet {
 		forward(request, response, url);
 	}
 
-	void register(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String url = "/register.jsp";
-		forward(request, response, url);
-	}
 
-	void newUser(HttpServletRequest request, HttpServletResponse response)
+	void register(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "";
 		String username = getParameter(request, "username");
@@ -144,11 +134,13 @@ public class WebQuizServlet extends HttpServlet {
 	void selectQuiz(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "";
+		QuizSelection selection = null;
 		User user = (User) request.getSession().getAttribute("user");
 
 		if (user != null) {
-			QuizSelection selection = QuizSelectionDB.populate();
-			request.setAttribute("selection", selection);
+			QuizSelectorService qss = new QuizSelectorService();
+			if (qss != null)  selection = qss.populate();
+			if (selection != null) request.setAttribute("selection", selection);
 			url = "/selectquiz.jsp";
 		} else {
 			url = "/login.jsp";
@@ -170,14 +162,15 @@ public class WebQuizServlet extends HttpServlet {
 					modules[i] = Integer.parseInt(moduleParams[i]);
 
 				final int MAX_QUESTION_COUNT = 10;
-				Quiz quiz = QuizDB.generate(modules, MAX_QUESTION_COUNT);
+				Quiz quiz = QuizGeneratorService.generate(modules, MAX_QUESTION_COUNT);
 
 				httpSession.setAttribute("quiz", quiz);
 				url = "/displayquiz.jsp";
 			} else {
 				request.setAttribute("error",
 						"Please select one or more modules.");
-				QuizSelection selection = QuizSelectionDB.populate();
+				QuizSelectorService qss = new QuizSelectorService();
+				QuizSelection selection = qss.populate();
 				request.setAttribute("selection", selection);
 				url = "/selectquiz.jsp";
 			}
@@ -194,25 +187,28 @@ public class WebQuizServlet extends HttpServlet {
 		User user = (User) httpSession.getAttribute("user");
 
 		if (user != null) {
-			Quiz quiz = (Quiz) httpSession.getAttribute("quiz");
+			QuizGraderService qgs = new QuizGraderService();			
+			Quiz quiz = null;
 
-			if (quiz != null) {
-				for (Question question : quiz.getQuestions()) {
-
-					String question_id = "" + question.getId();
+			if (qgs != null) {
+				// get questions which are inside quiz
+				quiz = (Quiz) httpSession.getAttribute("quiz");
+				if (quiz != null) {
+					qgs.setQuiz(quiz);
 
 					// get the users answer(s)
-					ArrayList<String> userAnswers = new ArrayList<String>();
-					String[] answers = request.getParameterValues(question_id);
-					if (answers != null)
-						userAnswers.addAll(Arrays.asList(answers));
-					question.setUserAnswers(userAnswers);
+					for (Question question : quiz.getQuestions()) {
+						String question_id = "" + question.getId();
+						ArrayList<String> userAnswers = new ArrayList<String>();
+						String[] answers = request.getParameterValues(question_id);
+						if (answers != null) userAnswers.addAll(Arrays.asList(answers));
+						question.setUserAnswers(userAnswers);
+					}
 				}
-				quiz.grade();
-				url = "/displayquizresults.jsp";
-			} else {
-				url = "/selectquiz.jsp";
+				qgs.grade();
+				httpSession.setAttribute("quiz", qgs.getQuiz());
 			}
+			url = "/displayquizresults.jsp";
 		} else {
 			url = "/login.jsp";
 		}

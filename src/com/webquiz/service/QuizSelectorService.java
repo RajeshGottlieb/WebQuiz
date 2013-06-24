@@ -1,35 +1,25 @@
 package com.webquiz.service;
 
-import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.webquiz.data.QuizSelectionDB;
+import com.webquiz.dao.*;
 import com.webquiz.model.QuizSelection;
-import com.webquiz.model.User;
 
-public class QuizSelectorService extends WebQuizService {
+public class QuizSelectorService {
 
     /**
      * 
      */
-    private static final long serialVersionUID = 1L;
+    private final long serialVersionUID = 1L;
+    
+    private QuizSelectionDao qsdao = null;
+    
+	public QuizSelectorService() {
+		qsdao = new QuizSelectionDao();
+		return;
+	}
 
-    @Override
-    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
-        String url = "";
-        User user = (User) request.getSession().getAttribute("user");
-
-        if (user != null) {
-            QuizSelection selection = QuizSelectionDB.populate();
-            request.setAttribute("selection", selection);
-            url = "/selecttest.jsp";
-        } else {
-            url = "/login.jsp";
-        }
-        forward(request, response, url);
+    public QuizSelection populate () {
+        return qsdao.populate();
     }
+ 
 }

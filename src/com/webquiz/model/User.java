@@ -33,11 +33,11 @@ public class User implements Serializable {
         this.password = (password != null) ? password : "";
     }
 
-    public int getId() {
+    private int getId() {
         return id;
     }
     
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz-db>
 
-    <user username="keith" password="password" />
-    <user username="sifang" password="password" />
-    <user username="rajesh" password="password" />
+    <user username="keith" password="Password123" />
+    <user username="sifang" password="Password123" />
+    <user username="rajesh" password="Password123" />
 
     <subject name="Math">
         <category name="Addition">
