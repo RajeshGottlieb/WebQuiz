@@ -1,7 +1,7 @@
 package com.webquiz.service;
 
 
-import com.webquiz.data.UserDB;
+import com.webquiz.dao.UserDao;
 import com.webquiz.model.User;
 
 public class LoginService {
@@ -12,11 +12,11 @@ public class LoginService {
     private static final long serialVersionUID = 1L;
     
 	public static boolean addUser(String username, String password) {
-		return UserDB.addUser(username, password);
+		return UserDao.addUser(username, password);
 	}
 
 	public static User getUser(String username, String password) {
-		return UserDB.getUser(username, password);
+		return UserDao.getUser(username, password);
 	}
 
 	public static boolean validateUsername(String username) {
@@ -33,6 +33,11 @@ public class LoginService {
 			return false;
 		if (!password.matches(".*[0-9].*"))
 			return false;
+		if (!password.matches(".*[a-z].*"))
+			return false;
+		if (!password.matches(".*[A-Z].*"))
+			return false;
+		
 		return true;
 	}
 }
