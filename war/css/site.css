@@ -29,6 +29,8 @@ div#nav ul li.hoverA a:hover {background: #fff; color: #2c3747; }
 .fl {float: left; }
 .fr {float: right; }
 
+.pct50 {width: 50%; }
+
 .pb20 {padding-bottom: 20px; }
 .pl10 {padding-left: 10px; }
 .pl20 {padding-left: 20px; }
@@ -38,3 +40,6 @@ div#nav ul li.hoverA a:hover {background: #fff; color: #2c3747; }
 
 .bgOne {background: #2c3747; }
 .error {color: #F00; font-weight: bold; }
+
+a {font-variant: small-caps; }
+a:hover {color: #f00; }

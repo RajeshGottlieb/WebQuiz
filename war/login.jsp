@@ -1,5 +1,20 @@
 <jsp:include page="include/header.jsp" />
 
+<div class="pct50 fr">
+    <h1>Welcome to <%= application.getInitParameter("siteName") %></h1>
+    <p>To access a quiz, you will need to:
+    </p>
+    <p><a class="link pl20" href="/WebQuiz/Servlet?action=NEWUSER">Register</a>
+    </p>
+    <p>a new account and then <strong>Login</strong>.
+        The site offers a number of quizzes that will allow you to evaluate your knowledge
+        or practice to improve upon a skill.
+    </p>
+    <p>So, what are you waiting for? Login and get started.
+    </p>
+</div>
+
+<div class="pct50 fl">
 <h1>Login to <%= application.getInitParameter("siteName") %></h1>
 <%
     String error = (String) request.getAttribute("error");
@@ -11,7 +26,7 @@
 %>
 
 <form method="post" action="Servlet">
-    Please enter your User Name and Password.<br> <br>
+    <p>Please enter your User Name and Password.</p>
     <table cellpadding='4' cellspacing='2'>
         <tr>
             <td>User Name:</td>
@@ -22,9 +37,14 @@
             <td><input type="password" name="password"></td>
         </tr>
     </table>
-    <br /> <input type="submit" name="action" value="LOGIN">
+    <p>
+        <input type="submit" name="action" value="LOGIN">
+    </p>
 </form>
-    <br />
-    <br /> Please <a href="/WebQuiz/Servlet?action=NEWUSER">Register as a new user</a> if you do not have an account. 
+<p>
+Please <a href="/WebQuiz/Servlet?action=NEWUSER">Register as a New User</a> if you do not have an account. 
+</p>
+</div>
+<div class="cb"></div>
 
 <%@ include file="include/footer.jsp"%>
