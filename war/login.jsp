@@ -23,8 +23,8 @@
         </tr>
     </table>
     <br /> <input type="submit" name="action" value="LOGIN">
-    <br /> <input type="submit" name="action" value="REGISTER">
-    
 </form>
+    <br />
+    <br /> Please <a href="/WebQuiz/Servlet?action=NEWUSER">Register as a new user</a> if you do not have an account. 
 
 <%@ include file="include/footer.jsp"%>

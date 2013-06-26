@@ -54,6 +54,8 @@ public class WebQuizServlet extends HttpServlet {
 
 		if (action.equals("LOGIN"))
 			login(request, response);
+		else if (action.equals("NEWUSER"))
+			newUser(request, response);
 		else if (action.equals("REGISTER"))
 			register(request, response);
 		else if (action.equals("LOGOUT"))
@@ -90,16 +92,19 @@ public class WebQuizServlet extends HttpServlet {
 				selectQuiz(request, response);
 				return;
 			} else {
-				if (!LoginService.validateUsername(username))
-					request.setAttribute("error",
-							"Sorry, wrong username/password. Try again.");
+				request.setAttribute("error", "Sorry, wrong username/password. Try again.");
 				url = "/login.jsp";
 			}
 		}
 		forward(request, response, url);
 	}
 
-
+	
+	void newUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		forward(request, response, "/register.jsp");
+	}
+	
 	void register(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "";

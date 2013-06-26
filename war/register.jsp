@@ -11,7 +11,7 @@
 %>
 
 <form method="post" action="Servlet">
-    <input type="hidden" name="action" value="NEWUSER"> <br> <br>
+    <input type="hidden" name="action" value="REGISTER"> <br> <br>
     Please enter your User Name and Password.<br> <br>
     <table cellpadding='4' cellspacing='2'>
         <tr>
