@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Web Quiz</title>
+<title><%= application.getInitParameter("siteName") %></title>
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/site.css" />
 <link rel="stylesheet" type="text/css" href="css/page.css" />
@@ -14,8 +14,8 @@
 User user = (User) request.getSession().getAttribute("user");
 %>
 
-<div id="nav" class="bgOne">  <!-- //// Start Navigation ////////////////////////////////////////////////////////// -->
-    <ul>
+<div id="header" class="bgOne">  <!-- //// Start Navigation ////////////////////////////////////////////////////////// -->
+    <ul id="nav" >
         <li id="logo" class="fl"><h1><%= application.getInitParameter("siteName") %></h1></li>
         <li class="fl hoverA"><a href="/about">About</a></li>
 <% if (user != null) { 
