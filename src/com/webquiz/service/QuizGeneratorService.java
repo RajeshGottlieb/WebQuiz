@@ -6,11 +6,6 @@ import com.webquiz.model.Quiz;
 
 public class QuizGeneratorService {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-
     static final int MAX_QUESTION_COUNT = 10;
 
     public static Quiz generate(int[] modules, int maxQuestionCount) {

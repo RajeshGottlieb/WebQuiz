@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import com.webquiz.model.Answer;
 import com.webquiz.model.Question;
-import com.webquiz.model.Quiz;
 
 public class QuizGeneratorDao {
 
@@ -42,8 +41,7 @@ public class QuizGeneratorDao {
             return Question.Type.UNKNOWN;
     }
 
-    public static ArrayList<Question> getQuestions(int[] modules, int maxQuestionCount)
-            throws SQLException {
+    public static ArrayList<Question> getQuestions(int[] modules, int maxQuestionCount) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection connection = null;
@@ -51,10 +49,10 @@ public class QuizGeneratorDao {
         ArrayList<Question> questions = new ArrayList<Question>();
 
         String query = "SELECT id, text, type FROM question WHERE module_id IN (" + qmarks(modules.length)
-                + ") ORDER BY RAND() LIMIT " + maxQuestionCount;
+                        + ") ORDER BY RAND() LIMIT " + maxQuestionCount;
 
-        try {     
-            connection =  JdbcManager.getConnection();
+        try {
+            connection = JdbcManager.getConnection();
             ps = connection.prepareStatement(query);
 
             for (int i = 0; i < modules.length; i++)
@@ -69,9 +67,9 @@ public class QuizGeneratorDao {
                 Question question = new Question(id, type, text);
                 System.out.println("question=" + question.getText() + " type=" + type);
                 questions.add(question);
-            } 
-        }catch (Exception e) {
-                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             JdbcManager.close(rs);
             JdbcManager.close(ps);
@@ -89,7 +87,7 @@ public class QuizGeneratorDao {
         String query = "SELECT id, correct, value FROM answer WHERE question_id = ? ORDER BY RAND()";
 
         try {
-            connection =  JdbcManager.getConnection();
+            connection = JdbcManager.getConnection();
             ps = connection.prepareStatement(query);
             ps.setInt(1, question.getId());
             rs = ps.executeQuery();
