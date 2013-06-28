@@ -26,12 +26,12 @@ public class WebQuizServlet extends HttpServlet {
         super.init();
     }
 
-    String getParameter(HttpServletRequest request, String name, String def) {
+    private String getParameter(HttpServletRequest request, String name, String def) {
         String val = request.getParameter(name);
         return (val != null) ? val : def;
     }
 
-    String getParameter(HttpServletRequest request, String name) {
+    private String getParameter(HttpServletRequest request, String name) {
         return getParameter(request, name, "");
     }
 
@@ -61,16 +61,16 @@ public class WebQuizServlet extends HttpServlet {
         else if ("SELECT_QUIZ".equals(action))  {selectQuiz(request, response);}
         else if ("GENERATE_QUIZ".equals(action)){generateQuiz(request, response);}
         else if ("GRADE_QUIZ".equals(action))   {gradeQuiz(request, response);}
-        else if ("ABOUT".equals(action))        {gradeQuiz(request, response);}
+        else if ("ABOUT".equals(action))        {about(request, response);}
     }
 
-    void forward(HttpServletRequest request, HttpServletResponse response, String url)
+    private void forward(HttpServletRequest request, HttpServletResponse response, String url)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 
-    void login(HttpServletRequest request, HttpServletResponse response)
+    private void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
         String username = getParameter(request, "username");
@@ -95,11 +95,11 @@ public class WebQuizServlet extends HttpServlet {
         forward(request, response, url);
     }
 	
-    void newUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void newUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         forward(request, response, "/register.jsp");
     }
 
-    void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "";
         String username = getParameter(request, "username");
         String password = getParameter(request, "password");
@@ -120,13 +120,13 @@ public class WebQuizServlet extends HttpServlet {
         forward(request, response, url);
     }
 
-    void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("user");
         String url = "/login.jsp";
         forward(request, response, url);
     }
 
-    void selectQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void selectQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "";
         QuizSelection selection = null;
         User user = (User) request.getSession().getAttribute("user");
@@ -142,7 +142,7 @@ public class WebQuizServlet extends HttpServlet {
         forward(request, response, url);
     }
 
-    void generateQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void generateQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "";
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
@@ -172,7 +172,7 @@ public class WebQuizServlet extends HttpServlet {
         forward(request, response, url);
     }
 
-    void gradeQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void gradeQuiz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "";
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
@@ -206,5 +206,9 @@ public class WebQuizServlet extends HttpServlet {
             url = "/login.jsp";
         }
         forward(request, response, url);
+    }
+
+    private void about(HttpServletRequest request, HttpServletResponse response) {
+        
     }
 }
