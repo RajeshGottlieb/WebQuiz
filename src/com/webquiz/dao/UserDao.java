@@ -20,7 +20,7 @@ public class UserDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT id FROM user WHERE username = ? AND password = ?";
+        String query = "SELECT id, username, password FROM user WHERE username = ? AND password = ?";
         try {
             connection = JdbcManager.getConnection();
             ps = connection.prepareStatement(query);
@@ -28,8 +28,14 @@ public class UserDao {
             ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
-                User user = new User(username, password, rs.getInt("id"));
-                return user;
+                // SQL query is not case sensitive - make sure password case matches
+                int id = rs.getInt("id");
+                String db_username = rs.getString("username");
+                String db_password = rs.getString("password");
+                if (password.equals(db_password)) {
+                    User user = new User(db_username, db_password, id);
+                    return user;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
