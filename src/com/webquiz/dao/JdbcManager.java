@@ -24,8 +24,7 @@ public class JdbcManager {
         if (c != null) {
             try {
                 c.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ignored) {
             }
         }
     }
@@ -34,8 +33,7 @@ public class JdbcManager {
         if (s != null) {
             try {
                 s.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ignored) {
             }
         }
     }
@@ -44,8 +42,7 @@ public class JdbcManager {
         if (rs != null) {
             try {
                 rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ignored) {
             }
         }
     }
