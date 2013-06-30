@@ -91,15 +91,23 @@ public class Question implements Serializable {
     public void grade() {
         ArrayList<Answer> correctAnswers = getCorrectAnswers();
         int userCorrectAnswerCount = 0;
-        
-        // make sure each correct answer matches a user answer
-        for (Answer correctAnswer : correctAnswers) {
-            for (String userAnswer : getUserAnswers()) {
+        int userWrongAnswerCount = 0;
+
+        for (String userAnswer : getUserAnswers()) {
+            boolean foundMatch = false;
+            for (Answer correctAnswer : correctAnswers) {
                 if (correctAnswer.matches(userAnswer)) {
-                    userCorrectAnswerCount += 1;
+                    foundMatch = true;
+                    break;
                 }
             }
+            if (foundMatch)
+                ++userCorrectAnswerCount;
+            else
+                ++userWrongAnswerCount;
+
         }
-        setAnsweredCorrectly(userCorrectAnswerCount == correctAnswers.size());
+
+        setAnsweredCorrectly(correctAnswers.size() == userCorrectAnswerCount && userWrongAnswerCount == 0);
     }
 }
