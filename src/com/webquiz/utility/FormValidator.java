@@ -2,7 +2,7 @@ package com.webquiz.utility;
 
 public final class FormValidator {
 
-    public static boolean validateEmptyField(String formField) {
+    public static boolean validateFieldHasValue(String formField) {
         if (formField.equals(""))
             return false;
         else

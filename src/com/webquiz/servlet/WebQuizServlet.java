@@ -78,7 +78,7 @@ public class WebQuizServlet extends HttpServlet {
         String username = getParameter(request, "username");
         String password = getParameter(request, "password");
 
-        if (!FormValidator.validateEmptyField(username) || !FormValidator.validateEmptyField(password)) {
+        if (!FormValidator.validateFieldHasValue(username) || !FormValidator.validateFieldHasValue(password)) {
             request.setAttribute("error", "Please supply a User Name and Password.");
             url = "/login.jsp";
         } else {
@@ -106,7 +106,7 @@ public class WebQuizServlet extends HttpServlet {
         String username = getParameter(request, "username");
         String password = getParameter(request, "password");
 
-        if (!FormValidator.validateEmptyField(username) || !FormValidator.validateEmptyField(password)) {
+        if (!FormValidator.validateFieldHasValue(username) || !FormValidator.validateFieldHasValue(password)) {
             request.setAttribute("error", "Please supply a User Name and Password.");
             url = "/register.jsp";
         } else if (!FormValidator.validatePassword(password)) {
