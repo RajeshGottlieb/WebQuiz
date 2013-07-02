@@ -17,6 +17,7 @@ import com.webquiz.model.Quiz;
 import com.webquiz.model.QuizSelection;
 import com.webquiz.model.User;
 import com.webquiz.service.*;
+import com.webquiz.utility.FormValidator;
 
 public class WebQuizServlet extends HttpServlet {
 
@@ -77,8 +78,8 @@ public class WebQuizServlet extends HttpServlet {
         String username = getParameter(request, "username");
         String password = getParameter(request, "password");
 
-        if (!LoginService.validateUsername(username) || !LoginService.validatePassword(password)) {
-            request.setAttribute("error", "Sorry, invalid username or password. Try again.");
+        if (!FormValidator.validateEmptyField(username) || !FormValidator.validateEmptyField(password)) {
+            request.setAttribute("error", "Please supply a User Name and Password.");
             url = "/login.jsp";
         } else {
             User user = LoginService.getUser(username, password);
@@ -105,8 +106,13 @@ public class WebQuizServlet extends HttpServlet {
         String username = getParameter(request, "username");
         String password = getParameter(request, "password");
 
-        if (!LoginService.validateUsername(username) || !LoginService.validatePassword(password)) {
-            request.setAttribute("error", "Sorry, invalid username or password. Try again.");
+        if (!FormValidator.validateEmptyField(username) || !FormValidator.validateEmptyField(password)) {
+            request.setAttribute("error", "Please supply a User Name and Password.");
+            url = "/register.jsp";
+        } else if (!FormValidator.validatePassword(password)) {
+            request.setAttribute("error",
+                    "Invalid password. Password must be 8 or more characters.<br>" +
+                    "Must contain a number, and a lower and uppercase letter.");
             url = "/register.jsp";
         } else {
             boolean rc = LoginService.addUser(username, password);
@@ -215,7 +221,6 @@ public class WebQuizServlet extends HttpServlet {
                         "<html>" +
                         "<head>" +
                         "<meta charset=\"UTF-8\">" +
-                        //"<title>" + application.getInitParameter("siteName") + "</title>" +
                         "<title>Web Quiz</title>" +
                         "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/reset.css\" />" +
                         "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/site.css\" />" +
