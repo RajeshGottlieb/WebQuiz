@@ -8,6 +8,6 @@ Supported
 * Tomcat: 7
 
 TODO:
-* Make username and password case sensitive for login. You can login with "username" or "UsErNaMe".
-* Fix quiz grading. If the user selects both a correct and incorrect multiple choice answer it is graded as correct.
-* Move some of the servlet logic into Service helper classes (as a demonstration of the instructors preferred design). Start with login, new user registration, quiz generation and quiz grading.
+* Change JSP pages to use jstl.
+* Add email address to User.
+* Add log4j config and convert System.out.println() calls to log4j.
