@@ -8,6 +8,10 @@ Supported
 * Tomcat: 7
 
 TODO:
-* Change JSP pages to use jstl.
-* Add email address to User.
+* Change JSP pages to use jstl and EL.
+* Add email address, first name, last name to User.
+* Add double password confirmation on new user.
 * Add log4j config and convert System.out.println() calls to log4j.
+* Create special "guest" account (any password is accepted).
+* Look into MathJax for equation printing.
+* Support "responsive web design".
