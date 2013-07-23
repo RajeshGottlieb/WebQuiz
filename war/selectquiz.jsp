@@ -1,9 +1,6 @@
 <jsp:include page="include/header.jsp" />
 
-<%@ page import="com.webquiz.model.QuizSelection" %>
-<%@ page import="com.webquiz.model.Category" %>
-<%@ page import="com.webquiz.model.Subject" %>
-<%@ page import="com.webquiz.model.Module" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="pct50 fr">
     <h1>Welcome to Select <%= application.getInitParameter("siteName") %></h1>
@@ -34,59 +31,33 @@
 </div>
 
 <div class="pct50 fl">
-<h1>Select module(s) to be quizzed on</h1>
-<%
-    String error = (String) request.getAttribute("error");
-    if (error != null) {
-%>
-<p class="error"><%=error%></p>
-<%
-    }
-%>
+    <h1>Select module(s) to be quizzed on</h1>
+    <c:if test="${error != ''}">
+        <p class="error">${error}</p>
+    </c:if>
 
-<form method="post" action="Servlet">
-    <input type="hidden" name="action" value="GENERATE_QUIZ">
-<%
-QuizSelection selection = (QuizSelection) request.getAttribute("selection"); 
-
-if (selection != null) {
-%>
-    <ul>
-<%
-    for (Subject subject : selection.getSubjects()) {
-        String subject_name = subject.getName();
-%>
-        <li><h2><%=subject_name%></h2></li>
+    <form method="post" action="Servlet">
+        <input type="hidden" name="action" value="GENERATE_QUIZ">
         <ul>
-<%
-        for (Category category : subject.getCategories()) {
-            String category_name = category.getName();
-%>
-            <li><h3 class="pl30"><%=category_name%></h3></li>
-            <ul class="pb20">
-<%
-            for (Module module : category.getModules()) {
-                int module_id = module.getId();
-                String module_name = module.getName();
-%>
-                <li class="pl60"><input type="checkbox" name="module" value="<%=module_id%>"><%=module_name%></li>
-<%
-            }
-%>
-            </ul>
-<%
-        }
-%>
+            <c:forEach var="subject" items="${selection.subjects}">
+                <li><h2>${subject.name}</h2></li>
+                <ul>
+                    <c:forEach var="category"
+                        items="${subject.categories}">
+                        <li><h3 class="pl30">${category.name}</h3></li>
+                        <ul class="pb20">
+                            <c:forEach var="module"
+                                items="${category.modules}">
+                                <li class="pl60"><input type="checkbox" name="module" value="${module.id}">${module.name}</li>
+                            </c:forEach>
+                        </ul>
+                    </c:forEach>
+                </ul>
+            </c:forEach>
         </ul>
-<%
-    }
-%>
-    </ul>
-<%
-}
-%>
-<br /> <input type="submit" value="Submit">
-</form>
+        <br />
+        <input type="submit" value="Submit">
+    </form>
 </div>
 <div class="cb"></div>
 
