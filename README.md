@@ -15,3 +15,5 @@ TODO:
 * Create special "guest" account (any password is accepted).
 * Look into MathJax for equation printing.
 * Support "responsive web design".
+* Add Log4J xml file
+* Add Log4J properties file
