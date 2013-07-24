@@ -19,9 +19,13 @@ import com.webquiz.model.User;
 import com.webquiz.service.*;
 import com.webquiz.utility.FormValidator;
 
+import org.apache.log4j.*;
+
 public class WebQuizServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
+    private static final Logger log = Logger.getLogger(WebQuizServlet.class);
 
     @Override
     public void init() throws ServletException {
@@ -47,14 +51,13 @@ public class WebQuizServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = getParameter(request, "action", "LOGIN");
-        System.out.println("action is " + action);
+        log.debug("action is " + action);
 
         if ((request.getSession().getAttribute("user") == null)
                 && !action.equals("LOGIN") && !action.equals("REGISTER")
                 && !action.equals("ABOUT") && !action.equals("NEWUSER")) {
             action = "LOGIN";
         }
-        System.out.println("action is " + action);
 
         if      ("LOGIN".equals(action))        {login(request, response);}
         else if ("NEWUSER".equals(action))      {newUser(request, response);}
