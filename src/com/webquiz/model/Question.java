@@ -96,7 +96,7 @@ public class Question implements Serializable {
         for (String userAnswer : getUserAnswers()) {
             boolean foundMatch = false;
             for (Answer correctAnswer : correctAnswers) {
-                if (correctAnswer.matches(userAnswer)) {
+                if (correctAnswer.matches(userAnswer.trim())) {
                     foundMatch = true;
                     break;
                 }
