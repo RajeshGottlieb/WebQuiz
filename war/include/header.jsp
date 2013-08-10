@@ -18,6 +18,7 @@ User user = (User) request.getSession().getAttribute("user");
     <ul id="nav" >
         <li id="logo" class="fl"><h1><%= application.getInitParameter("siteName") %></h1></li>
         <li class="fl hoverA"><a href="/WebQuiz/Servlet?action=ABOUT">About</a></li>
+        <li class="fl hoverA"><a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Quizzes</a></li>
 <% if (user != null) { 
 	   String username = user.getUsername();
 %>
