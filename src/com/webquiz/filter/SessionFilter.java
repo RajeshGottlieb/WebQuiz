@@ -39,7 +39,9 @@ public class SessionFilter implements Filter {
             HttpServletRequest request = (HttpServletRequest) req;
 
             String action = getParameter(request, "action");
-            if (!action.equals("LOGIN")) {
+            //if (!action.equals("LOGIN") && !action.equals("ABOUT")) {
+            // if (!action.equals("LOGIN")) {
+            if (false) {
                 HttpSession session = request.getSession();
                 if (session.getAttribute("user") == null) {
                     String newURI = "/login.jsp";
