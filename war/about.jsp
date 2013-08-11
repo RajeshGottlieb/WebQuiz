@@ -1,6 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<html>
+
+<jsp:include page="include/head.jsp" />
+<body id="about">
 <jsp:include page="include/header.jsp" />
 
+<div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <h1>About</h1>
 <h2>Web Quiz Group Members</h2>
 <ul>
@@ -29,5 +34,8 @@ salutatus pro, est hinc accumsan cu.
 Sea enim rebum utroque no. Et sit legere suscipiantur deterruisset, impetus scribentur no nec. Alterum vulputate 
 eum ei. Labores repudiandae eos eu, eum eu causae voluptatibus. Ex volumus insolens est.
 </p>
+</div>              <!-- //// End Content ////////////////////////////////////////////////////////////////////////// -->
 
 <%@ include file="include/footer.jsp" %>
+</body>
+</html>
