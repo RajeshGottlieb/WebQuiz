@@ -12,6 +12,10 @@
     </resource-ref>
 
     <context-param>
+        <param-name>htmlDocType</param-name>
+        <param-value>&lt;!DOCTYPE html&gt;</param-value>
+    </context-param>
+    <context-param>
         <param-name>companyName</param-name>
         <param-value>Web Quiz Group</param-value>
     </context-param>

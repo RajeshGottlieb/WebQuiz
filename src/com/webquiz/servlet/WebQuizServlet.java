@@ -55,7 +55,8 @@ public class WebQuizServlet extends HttpServlet {
 
         if ((request.getSession().getAttribute("user") == null)
                 && !action.equals("LOGIN") && !action.equals("REGISTER")
-                && !action.equals("ABOUT") && !action.equals("NEWUSER")) {
+                && !action.equals("ABOUT") && !action.equals("NEWUSER")
+                && !action.equals("TEMPLATE")) {
             action = "LOGIN";
         }
 
@@ -67,6 +68,7 @@ public class WebQuizServlet extends HttpServlet {
         else if ("GENERATE_QUIZ".equals(action)){generateQuiz(request, response);}
         else if ("GRADE_QUIZ".equals(action))   {gradeQuiz(request, response);}
         else if ("ABOUT".equals(action))        {about(request, response);}
+        else if ("TEMPLATE".equals(action))     {template(request, response);}
     }
 
     private void forward(HttpServletRequest request, HttpServletResponse response, String url)
@@ -220,5 +222,9 @@ public class WebQuizServlet extends HttpServlet {
 
     private void about(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         forward(request, response, "/about.jsp");
+    }
+
+    private void template(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        forward(request, response, "/template.jsp");
     }
 }
