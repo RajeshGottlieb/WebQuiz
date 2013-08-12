@@ -1,5 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<html>
+
+<jsp:include page="include/head.jsp" />
+<body id="register">
 <jsp:include page="include/header.jsp" />
 
+<div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <h1>Register with <%= application.getInitParameter("siteName") %></h1>
 <%
     String error = (String) request.getAttribute("error");
@@ -26,5 +32,8 @@
     <br /> <input type="submit" name="Register" value="REGISTER">
     
 </form>
+</div>              <!-- //// End Content ////////////////////////////////////////////////////////////////////////// -->
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="include/footer.jsp" %>
+</body>
+</html>
