@@ -1,7 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<html>
+
+<jsp:include page="include/head.jsp" />
+<body id="selectquiz">
 <jsp:include page="include/header.jsp" />
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <div class="pct50 fr">
     <h1>Welcome to Select <%= application.getInitParameter("siteName") %></h1>
     <h2>Organization</h2>
@@ -60,5 +64,8 @@
     </form>
 </div>
 <div class="cb"></div>
+</div>              <!-- //// End Content ////////////////////////////////////////////////////////////////////////// -->
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="include/footer.jsp" %>
+</body>
+</html>
