@@ -1,7 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<html>
+
+<jsp:include page="include/head.jsp" />
+<body id="displayquizresults">
 <jsp:include page="include/header.jsp" />
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <h1>Quiz Results</h1>
 
 <a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Try another quiz</a><br /><br />
@@ -28,5 +32,8 @@
 </c:forEach>
 
 <a href="/WebQuiz/Servlet?action=SELECT_QUIZ">Try another quiz</a>
+</div>              <!-- //// End Content ////////////////////////////////////////////////////////////////////////// -->
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="include/footer.jsp" %>
+</body>
+</html>
