@@ -1,7 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<html>
+
+<jsp:include page="include/head.jsp" />
+<body id="displayquiz">
 <jsp:include page="include/header.jsp" />
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <h1>Quiz</h1>
 
 <form method="post" action="Servlet">
@@ -27,5 +31,8 @@
     <br />
     <input type="submit" value="Submit">
 </form>
+</div>              <!-- //// End Content ////////////////////////////////////////////////////////////////////////// -->
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="include/footer.jsp" %>
+</body>
+</html>
