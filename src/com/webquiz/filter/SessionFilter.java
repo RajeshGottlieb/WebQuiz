@@ -13,9 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.webquiz.servlet.WebQuizServlet;
+
 public class SessionFilter implements Filter {
 
     private FilterConfig config;
+    
+    private static final Logger log = Logger.getLogger(WebQuizServlet.class);
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -33,27 +39,31 @@ public class SessionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
-                    ServletException {
+            ServletException {
 
         if (req instanceof HttpServletRequest) {
             HttpServletRequest request = (HttpServletRequest) req;
 
-            String action = getParameter(request, "action");
-            //if (!action.equals("LOGIN") && !action.equals("ABOUT")) {
-            // if (!action.equals("LOGIN")) {
-            if (false) {
-                HttpSession session = request.getSession();
-                if (session.getAttribute("user") == null) {
-                    String newURI = "/login.jsp";
-                    req.getRequestDispatcher(newURI).forward(req, res);
-                    System.out.println("forward to login.jsp");
-                    return;
+            String uri = request.getRequestURI();
+
+            // allow certain files to skip this
+            if (!(uri.indexOf("/css") > 0 || uri.indexOf("/images") > 0 || uri.indexOf("/js") > 0)) {
+
+                String action = getParameter(request, "action");
+                
+                if (!(action.equals("LOGIN") || action.equals("ABOUT") || action.equals("NEWUSER"))) {
+                    HttpSession session = request.getSession();
+                    if (session.getAttribute("user") == null) {
+                        String newURI = "/login.jsp";
+                        req.getRequestDispatcher(newURI).forward(req, res);
+                        log.debug("forward to login.jsp");
+                        return;
+                    }
                 }
             }
         }
 
         chain.doFilter(req, res);
-
     }
 
     @Override
