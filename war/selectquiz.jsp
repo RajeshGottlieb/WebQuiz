@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>${initParam.htmlDocType}
 <html>
 
 <jsp:include page="include/head.jsp" />
@@ -36,7 +36,7 @@
 
 <div class="pct50 fl">
     <h1>Select module(s) to be quizzed on</h1>
-    <c:if test="${error != ''}">
+    <c:if test="${!(empty error)}">
         <p class="error">${error}</p>
     </c:if>
 

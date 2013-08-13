@@ -1,5 +1,5 @@
 <div id="footer">   <!-- //// Start Footer //////////////////////////////////////////////////////////////////////// -->
     <div class="fr">
-        &copy; 2013 <%= application.getInitParameter("companyName") %>
+        &copy; 2013 ${initParam.companyName}
     </div>
 </div>              <!-- //// End Footer ////////////////////////////////////////////////////////////////////////// -->

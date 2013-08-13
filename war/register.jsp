@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>${initParam.htmlDocType}
 <html>
 
 <jsp:include page="include/head.jsp" />
@@ -6,15 +6,11 @@
 <jsp:include page="include/header.jsp" />
 
 <div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
-<h1>Register with <%= application.getInitParameter("siteName") %></h1>
-<%
-    String error = (String) request.getAttribute("error");
-    if (error != null) {
-%>
-<em><font color="red"><%=error%></font></em>
-<%
-    }
-%>
+<h1>Register with ${initParam.siteName}</h1>
+
+<c:if test="${!(empty error)}">
+    <p class="error">${error}</p>
+</c:if>
 
 <form method="post" action="Servlet">
     <input type="hidden" name="action" value="REGISTER"> <br> <br>

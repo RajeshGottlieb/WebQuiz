@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>${initParam.htmlDocType}
 <html>
 
 <jsp:include page="include/head.jsp" />

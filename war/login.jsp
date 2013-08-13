@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%= application.getInitParameter("htmlDocType") %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>${initParam.htmlDocType}
 <html>
 
 <jsp:include page="include/head.jsp" />
@@ -7,7 +7,7 @@
 
 <div id="content">  <!-- //// Start Content /////////////////////////////////////////////////////////////////////// -->
 <div class="pct50 fr">
-    <h1>Welcome to <%= application.getInitParameter("siteName") %></h1>
+    <h1>Welcome to ${initParam.siteName}</h1>
     <p>To access a quiz, you will need to:
     </p>
     <p><a class="link pl20" href="/WebQuiz/Servlet?action=NEWUSER">Register</a>
@@ -21,15 +21,11 @@
 </div>
 
 <div class="pct50 fl">
-<h1>Login to <%= application.getInitParameter("siteName") %></h1>
-<%
-    String error = (String) request.getAttribute("error");
-    if (error != null) {
-%>
-<p><em class="error"><%=error%></em></p>
-<%
-    }
-%>
+<h1>Login to ${initParam.siteName}</h1>
+
+<c:if test="${!(empty error)}">
+    <p class="error">${error}</p>
+</c:if>
 
 <form method="post" action="Servlet">
     <p>Please enter your User Name and Password.</p>
