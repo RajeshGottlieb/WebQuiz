@@ -18,7 +18,7 @@
     <table cellpadding='4' cellspacing='2'>
         <tr>
             <td>User Name:</td>
-            <td><input type="text" name="username"></td>
+            <td><input id="username" type="text" name="username"></td>
         </tr>
         <tr>
             <td>Password:</td>
